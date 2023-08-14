@@ -92,7 +92,7 @@ int decode_tcp(unsigned char *tcp){
   printf("Urgent Pointer : %x\n", ntohs(header->urgent));
   printf("=============================\n");
 */
-  return 20;
+  return sizeof(header);
 }
 
 int decode_udp(unsigned char *udp){
@@ -105,7 +105,7 @@ int decode_udp(unsigned char *udp){
   printf("Checksum : 0x%x\n", ntohs(header->checksum));
   printf("=============================\n");
 */
-  return 8;
+  return sizeof(header);
 }
 //
 int decode_icmp(unsigned char *icmp){
@@ -119,7 +119,7 @@ int decode_icmp(unsigned char *icmp){
   printf("Sequence Number : %x\n", ntohs(header->seq));
   printf("================================\n");
   */
-  return 8;
+  return sizeof(header);
 }
 
 void parse_pkt(unsigned char *user, struct pcap_pkthdr *phrd, unsigned char *pdata, PKTDATA *pkt_data){
