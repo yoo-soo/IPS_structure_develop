@@ -73,6 +73,70 @@
     + 1518 - (eth_hdr - ip_hdr - protocol(TCP(20)/UDP(8)/ICMP(8))_hdr)
 
 ## ▶ Protocol Stack Structure
-![image](https://github.com/yoo-soo/markTest/assets/80819675/32c83385-2295-4868-b449-826d1f5ed77c)
+![image](https://github.com/yoo-soo/markTest/assets/80819675/aac52fef-1253-40fa-ae2d-c306bbc7f1b3)
+
+```C
+typedef struct _eth_hdr{                                                
+  unsigned char dst[ETH_ADDR_LEN];                                      
+  unsigned char src[ETH_ADDR_LEN];                                      
+  unsigned short type;                                                  
+} eth_hdr;  
+```
+![image](https://github.com/yoo-soo/markTest/assets/80819675/7d98e468-c600-4b52-9015-ad03dba81e26)
+
+```C
+typedef struct _ip_hdr{
+  unsigned char hd_len:4;    // header length
+  unsigned char version:4;    // version
+  unsigned char tos;         // type of service
+  unsigned short total_len;  // total length
+  unsigned short id;         // identification
+  unsigned short frag_off;   // fragment offset field
+  unsigned char ttl;         // time to live
+  unsigned char protocol;    // protocol
+  unsigned short checksum;   // check sum
+  unsigned char src_ip[IP_ADDR_LEN];         // source address
+  unsigned char dst_ip[IP_ADDR_LEN];         // destination address
+} ip_hdr;
+```
+![image](https://github.com/yoo-soo/markTest/assets/80819675/b9275487-cbc3-432c-8abf-eb4e5d3b4925)
+
+```C
+typedef struct _tcp_hdr{
+  unsigned short src_port;  // source port
+  unsigned short dst_port;  // destination port
+  unsigned int sequence;    // sequece number
+  unsigned int acknowledge; // acknowledgement number
+  unsigned short doff:4;
+  unsigned short reserved:4;
+  unsigned char flags;      // flags
+  unsigned short window;    // window size
+  unsigned short check;     // checksum
+  unsigned short urgent;    // urgent pointer
+} tcp_hdr;
+```
+
+![image](https://github.com/yoo-soo/markTest/assets/80819675/7ab0b952-400f-4beb-b52b-527370c8e293)
+
+```C
+typedef struct _udp_hdr{
+  unsigned short src_port;  // source port
+  unsigned short dst_port;  // destination port
+  unsigned short len;       // length
+  unsigned short checksum;  // checksum
+} udp_hdr;
+```
+
+![image](https://github.com/yoo-soo/markTest/assets/80819675/e9c05f5a-8c90-402c-8fe4-725622864b86)
+
+```C
+typedef struct _icmp_hdr{
+  unsigned char type;       // type
+  unsigned char code;       // code
+  unsigned short checksum;  // checksum
+  unsigned short id;        // identifier
+  unsigned short seq;       // sequence number
+} icmp_hdr;
+```
 
 ## 결과물
