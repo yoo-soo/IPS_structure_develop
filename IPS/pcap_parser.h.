@@ -58,45 +58,45 @@ typedef struct _eth_hdr{
 } eth_hdr;
 
 typedef struct _ip_hdr{
-  unsigned char hd_len:4;    // header length
-  unsigned char version:4;    // version
-  unsigned char tos;         // type of service
-  unsigned short total_len;  // total length
-  unsigned short id;         // identification
-  unsigned short frag_off;   // fragment offset field
-  unsigned char ttl;         // time to live
-  unsigned char protocol;    // protocol
-  unsigned short checksum;   // check sum
-  unsigned char src_ip[IP_ADDR_LEN];         // source address
-  unsigned char dst_ip[IP_ADDR_LEN];         // destination address
+  unsigned char hd_len:4;              // header length
+  unsigned char version:4;             // version
+  unsigned char tos;                   // type of service
+  unsigned short total_len;            // total length
+  unsigned short id;                   // identification
+  unsigned short frag_off;             // fragment offset field
+  unsigned char ttl;                   // time to live
+  unsigned char protocol;              // protocol
+  unsigned short checksum;             // check sum
+  unsigned char src_ip[IP_ADDR_LEN];   // source address
+  unsigned char dst_ip[IP_ADDR_LEN];   // destination address
 } ip_hdr;
 
 typedef struct _tcp_hdr{
-  unsigned short src_port;
-  unsigned short dst_port;
-  unsigned int sequence;
-  unsigned int acknowledge;
+  unsigned short src_port;  // source port
+  unsigned short dst_port;  // destination port
+  unsigned int sequence;    // sequece number
+  unsigned int acknowledge; // acknowledgement number
   unsigned short doff:4;
   unsigned short reserved:4;
-  unsigned char flags;
-  unsigned short window;
-  unsigned short check;
-  unsigned short urgent;
+  unsigned char flags;      // flags
+  unsigned short window;    // window size
+  unsigned short check;     // checksum
+  unsigned short urgent;    // urgent pointer
 } tcp_hdr;
 
 typedef struct _udp_hdr{
-  unsigned short src_port;
-  unsigned short dst_port;
-  unsigned short len;
-  unsigned short checksum;
+  unsigned short src_port;  // source port
+  unsigned short dst_port;  // destination port
+  unsigned short len;       // length
+  unsigned short checksum;  // checksum
 } udp_hdr;
 
 typedef struct _icmp_hdr{
-  unsigned char type;
-  unsigned char code;
-  unsigned short checksum;
-  unsigned short id;
-  unsigned short seq;
+  unsigned char type;       // type
+  unsigned char code;       // code
+  unsigned short checksum;  // checksum
+  unsigned short id;        // identifier
+  unsigned short seq;       // sequence number
 } icmp_hdr;
 
 typedef struct _PATTERN{
