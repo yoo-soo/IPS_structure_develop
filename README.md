@@ -142,5 +142,3 @@ typedef struct _icmp_hdr{
   unsigned short seq;       // sequence number
 } icmp_hdr;
 ```
-
-## 결과물
