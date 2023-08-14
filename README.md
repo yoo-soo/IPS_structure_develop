@@ -73,6 +73,7 @@
     + 1518 - (eth_hdr - ip_hdr - protocol(TCP(20)/UDP(8)/ICMP(8))_hdr)
 
 ## ▶ Protocol Stack Structure
+### ▶ ETH
 ![image](https://github.com/yoo-soo/markTest/assets/80819675/aac52fef-1253-40fa-ae2d-c306bbc7f1b3)
 
 ```C
@@ -82,6 +83,7 @@ typedef struct _eth_hdr{
   unsigned short type;                                                  
 } eth_hdr;  
 ```
+### ▶ IP
 ![image](https://github.com/yoo-soo/markTest/assets/80819675/7d98e468-c600-4b52-9015-ad03dba81e26)
 
 ```C
@@ -99,6 +101,7 @@ typedef struct _ip_hdr{
   unsigned char dst_ip[IP_ADDR_LEN];         // destination address
 } ip_hdr;
 ```
+### ▶ TCP
 ![image](https://github.com/yoo-soo/markTest/assets/80819675/b9275487-cbc3-432c-8abf-eb4e5d3b4925)
 
 ```C
@@ -115,7 +118,7 @@ typedef struct _tcp_hdr{
   unsigned short urgent;    // urgent pointer
 } tcp_hdr;
 ```
-
+### ▶ UDP
 ![image](https://github.com/yoo-soo/markTest/assets/80819675/7ab0b952-400f-4beb-b52b-527370c8e293)
 
 ```C
@@ -126,7 +129,7 @@ typedef struct _udp_hdr{
   unsigned short checksum;  // checksum
 } udp_hdr;
 ```
-
+### ▶ ICMP
 ![image](https://github.com/yoo-soo/markTest/assets/80819675/e9c05f5a-8c90-402c-8fe4-725622864b86)
 
 ```C
