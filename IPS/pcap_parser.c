@@ -167,5 +167,14 @@ void parse_pkt(unsigned char *user, struct pcap_pkthdr *phrd, unsigned char *pda
   if(len>0){
     pkt_data->payload_len = len;
     memcpy(pkt_data->payload, pkt, len);
+
+    // printf 함수로 읽지 못하는 payload 문자열 isprint 함수로 읽기
+    for(i=0; pkt_data->payload_len>i; i++){               
+      if(isprint(pkt_data->payload[i])){                  
+        printf("%c", pkt_data->payload[i]);               
+      } else {                                            
+        printf(" ");
+      }
+    }   
   }
 }
