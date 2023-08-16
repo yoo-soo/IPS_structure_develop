@@ -14,7 +14,7 @@ int isFull(circular_queue *q) {
   return (q->front + 1) % QUEUE_MAX_SIZE == q->rear;
 }
 
-int enqueue_r(circular_queue *q, PKTDATA *pkdt) {
+int enqueue(circular_queue *q, PKTDATA *pkdt) {
   pthread_mutex_lock(&(q->mutex));
   if (isFull(q)) {
     //printf("Queue is full\n");
