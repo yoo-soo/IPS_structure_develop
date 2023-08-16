@@ -16,7 +16,7 @@ void* user_routine(unsigned char *user, struct pcap_pkthdr *phrd, unsigned char 
   memset(pkt_data, 0x00, sizeof(pkt_data));
   parse_pkt(user, phrd, pdata, pkt_data);
 
-  if(enqueue_r(q, pkt_data) == 0){
+  if(enqueue(q, pkt_data) == 0){
     printf("Failed to enqueue file [%s]. Queue is full\n", pkt_data->file_name);
     //continue;
   } else {  // enqueue 성공 시
