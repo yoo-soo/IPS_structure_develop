@@ -111,6 +111,6 @@ int isEmpty(circular_queue *q);
 
 int isFull(circular_queue *q);
 
-int enqueue_r(circular_queue *q, PKTDATA *pkdt);
+int enqueue(circular_queue *q, PKTDATA *pkdt);
 
 int dequeue(circular_queue *q, PKTDATA *pkdt);
