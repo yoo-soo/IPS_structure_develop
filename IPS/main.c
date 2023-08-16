@@ -86,30 +86,32 @@ void *detect_thread_run(void *ptrn){
 
   while(1) {
     if(dequeue(q, &pkt_d) == 0) {
-      //printf("꺼낼 데이터 없음!\n");
       continue;
     } else {
       printf("\n***********Dequeue***********\nFile name : [%s]\n", pkt_d.file_name);
     }
 
-    for (i=0; i<sizeof(ptrn_f->ptrn_target)/sizeof(ptrn_f->ptrn_target[0]);i++){
-      if(!strcmp(ptrn_f->ptrn_target[i], "\0")) {  // 순회가 모두 끝날 경우
-        printf("!!!!!!탐지 안 됨!!!!!\npcap file : %s \n", pkt_d.file_name);
-        break;
-      }
+    for (i=0; i<ptrn_f->ptrn_cnt; i++){
+      if(memmem(pkt_d.payload, pkt_d.payload_len, 
+            ptrn_f->ptrn_target[i], strlen(ptrn_f->ptrn_target[i]))){
+        printf("\n***********탐지 완료***********\n"
+            "pcap file : [%s]\npattern[%d]  : [%s]\n"
+            "payload   : [%s]\n", 
+            pkt_d.file_name,
+            i,
+            ptrn_f->ptrn_target[i],
+            pkt_d.payload);
 
-      if(memmem(pkt_d.payload, strlen(pkt_d.payload),
-            ptrn_f->ptrn_target[i], strlen(ptrn_f->ptrn_target[i])-1)){
-        printf("\n***********탐지 완료***********\npcap file : [%s]\npattern   : [%s]\npayload   : [%s]\n", pkt_d.file_name, ptrn_f->ptrn_target[i], pkt_d.payload);
         t = time(NULL);
         time_info = localtime(&t);
         log = fopen(log_file_path, "a");
+
         if( log == NULL ){
           printf("파일 열기 실패!\n");
           exit(0);
         }
-        fprintf(log, "%d-%.2d-%.2d %.2d:%.2d:%.2d | %s | %s\n", time_info->tm_year + 1900,
-                                                                time_info->tm_mon + 1,
+        fprintf(log, "%d-%.2d-%.2d %.2d:%.2d:%.2d | %s | %s\n", time_info->tm_year + 1900, 
+            time_info->tm_mon + 1, 
                                                                 time_info->tm_mday,
                                                                 time_info->tm_hour,
                                                                 time_info->tm_min,
@@ -119,7 +121,10 @@ void *detect_thread_run(void *ptrn){
 
         fclose(log);
         break;
-      }
+      } 
+    } 
+    if ( i == ptrn_f->ptrn_cnt ){
+      printf("탐지 실패\n");  
     }
   }
 }
