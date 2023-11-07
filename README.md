@@ -146,3 +146,12 @@ typedef struct _icmp_hdr{
   unsigned short seq;       // sequence number
 } icmp_hdr;
 ```
+
+### 기능 및 스펙
+```
+* 초당 평균 310,000개의 패킷을 처리할 수 있다.
+* Queue의 최대 개수는 1024로 한다.
+* Protocol은 TCP(6), UDP(17), ICMP(1) 만 처리하도록 한다.
+* 해당 IPS 구조는 payload를 문자열 비교하여 탐지한다.
+* 탐지된 패턴은 ../../IPS_structure_develop/log_dir 에 "년-월-일.log" 형식으로 기록된다.
+```
