@@ -29,11 +29,11 @@
 + Thread를 동작 시킴
 + CircularQueue index (rear/front)와 Mutex (lock/unlock) 을 초기화 시킴
 
-![image](https://github.com/yoo-soo/markTest/assets/80819675/40888776-ec70-47a5-9836-3d52cb090766)
+![main](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/04de1e63-bb5c-4570-b768-623aab5e03c4)
 
 ### ▶ MultiThread
 
-![image](https://github.com/yoo-soo/markTest/assets/80819675/cc711179-4d0d-48f5-82ba-cb3492907e4f)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/e8f1ac44-9ef0-4f99-b28c-3dbe6e6f5e75)
 
 + ReadThread
   + 디렉토리(../upload_pcap)에서 *.pcap 또는 *.cap 파일을 주기적으로 읽는다.
@@ -62,7 +62,7 @@
 
 ### ▶ Matching Method
 
-![image](https://github.com/yoo-soo/markTest/assets/80819675/58e8e12e-bd2f-41b6-8e09-08613df6d530)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/373b5543-b1e8-4401-8034-f3ee9f2336ca)
 
 + 패턴 매칭 방법
   + *.cfg 파일의 문자열과 읽어온 패킷 파일의 내용(문자열)을 fgets 함수를 사용해 2차원 배열로 읽어온 후 비교하여 매칭한다.
@@ -73,9 +73,13 @@
   + 입력할 수 있는 패턴의 길이는 payload에서 문자열을 읽어올 것이기 때문에 전체 캡처 패킷 길이에서 ETH, IP, PROTOCOL 헤더를 뺀 나머지 payload 공간에 맞추어 결정한다.
     + 1518 - (eth_hdr - ip_hdr - protocol(TCP(20)/UDP(8)/ICMP(8))_hdr)
 
+### ▶ Queue Struct
+
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/541d59ac-1d2e-4199-9c2c-5fc6c92b9ed9)
+
 ## ▶ Protocol Stack Structure
 ### ▶ ETH
-![image](https://github.com/yoo-soo/markTest/assets/80819675/aac52fef-1253-40fa-ae2d-c306bbc7f1b3)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/c0d675f4-1ffd-47bf-a579-288a11acdcc6)
 
 ```C
 typedef struct _eth_hdr{                                                
@@ -85,7 +89,7 @@ typedef struct _eth_hdr{
 } eth_hdr;  
 ```
 ### ▶ IP
-![image](https://github.com/yoo-soo/markTest/assets/80819675/7d98e468-c600-4b52-9015-ad03dba81e26)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/c706ab49-5626-4264-acdf-208bcace444b)
 
 ```C
 typedef struct _ip_hdr{
@@ -103,7 +107,7 @@ typedef struct _ip_hdr{
 } ip_hdr;
 ```
 ### ▶ TCP
-![image](https://github.com/yoo-soo/markTest/assets/80819675/b9275487-cbc3-432c-8abf-eb4e5d3b4925)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/f4d42c5d-baf0-4f27-86ad-3363f2a06578)
 
 ```C
 typedef struct _tcp_hdr{
@@ -120,7 +124,7 @@ typedef struct _tcp_hdr{
 } tcp_hdr;
 ```
 ### ▶ UDP
-![image](https://github.com/yoo-soo/markTest/assets/80819675/7ab0b952-400f-4beb-b52b-527370c8e293)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/7b695337-dd77-447b-8994-f974d54f7009)
 
 ```C
 typedef struct _udp_hdr{
@@ -131,7 +135,7 @@ typedef struct _udp_hdr{
 } udp_hdr;
 ```
 ### ▶ ICMP
-![image](https://github.com/yoo-soo/markTest/assets/80819675/e9c05f5a-8c90-402c-8fe4-725622864b86)
+![image](https://github.com/yoo-soo/IPS_structure_develop/assets/80819675/cccf5cf5-2078-4be4-861e-ab6d07299015)
 
 ```C
 typedef struct _icmp_hdr{
